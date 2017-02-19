@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <!-- make sure your css file goes after bootstrap link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+    <div class="container page-form">
+        <h1>Welcome to the blog site!</h1>
+        <h3>Log in</h3>
+        {% if auth_failed %}
+        <div class="alert alert-danger">
+            Wrong email/password combination- please try again or sign up if it's your first time here!
+        </div>
+        {% endif %}
+        {% if signout_success %}
+        <div class="alert alert-success">
+            You have logged out successfully.
+        </div>
+        {% endif %}
+
+        <form id="login-form" action="/auth/login" method="post">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-success">Log in</button>
+            or
+            <a href="/register">
+                <button type="button" class="btn btn-warning">Sign up</button>
+            </a>
+        </form>
+    </div>
+    </body>
+</html>
